@@ -47,7 +47,7 @@ spec:
       steps {
         container('maven') {
           sh """
-           mvn install /home/jenkins/agent/workspace/kware-springboot_master
+           mvn install pwd
           """
         }
       }
