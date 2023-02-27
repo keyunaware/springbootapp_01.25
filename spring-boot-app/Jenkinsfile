@@ -48,6 +48,7 @@ spec:
         container('maven') {
           sh """
            mvn install
+           cd springbootapp_01.25/spring-boot-app/Dockerfile
           """
         }
       }
