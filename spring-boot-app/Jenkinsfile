@@ -47,9 +47,7 @@ spec:
       steps {
         container('maven') {
           sh """
-            ln -s `pwd` /go/src/sample-app
-            cd /go/src/sample-app
-            go test
+           mvn install
           """
         }
       }
@@ -78,7 +76,6 @@ spec:
       // Production branch
       when { 
         anyOf { 
-          branch 'main' 
           branch 'master' 
         }
       }
