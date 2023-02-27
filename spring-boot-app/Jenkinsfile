@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'spring-boot-docker' }
+        docker { image 'sample-app' }
     }
     stages {
         stage('Test') {
