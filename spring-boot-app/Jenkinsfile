@@ -48,14 +48,12 @@ spec:
   stages {
     stage('Test') {
       steps {
-        container('maven') {
-          sh """
-           pwd
-           mvn install
-          """
+        dir("spring-boot-app") {
+    sh "mvn clean install"
         }
       }
     }
+  }
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
