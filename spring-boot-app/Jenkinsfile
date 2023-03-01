@@ -26,16 +26,19 @@ spec:
   containers:
   - name:  maven
     image:  maven
+    imagePullPolicy: IfNotPresent
     command:
     - cat
     tty: true
   - name: gcloud
     image: gcr.io/cloud-builders/gcloud
+    imagePullPolicy: IfNotPresent
     command:
     - cat
     tty: true
   - name: kubectl
     image: gcr.io/cloud-builders/kubectl
+    imagePullPolicy: IfNotPresent
     command:
     - cat
     tty: true
@@ -47,7 +50,8 @@ spec:
       steps {
         container('maven') {
           sh """
-           mvn install pwd
+           pwd
+           mvn install
           """
         }
       }
