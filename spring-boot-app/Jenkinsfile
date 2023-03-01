@@ -47,12 +47,11 @@ spec:
   }
   stages {
     stage('Test') {
-      steps {
+       steps {
         container('maven') {
-          sh """
-           cd /home/jenkins/agent/workspace/kware-springboot_master
-           mvn install
-          """
+        dir("spring-boot-app") {
+          sh "mvn clean install"
+          }
         }
       }
     }
