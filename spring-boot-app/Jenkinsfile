@@ -49,7 +49,7 @@ spec:
     stage('Test') {
        steps {
         container('maven') {
-        dir("spring-boot-app") {
+         dir("spring-boot-app") {
           sh "mvn clean install"
           }
         }
