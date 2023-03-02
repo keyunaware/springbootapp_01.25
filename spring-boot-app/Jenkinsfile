@@ -1,8 +1,8 @@
 pipeline {
 
   environment {
-    PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
-    APP_NAME = "gceme"
+    PROJECT = "sandbox-io-289003"
+    APP_NAME = "spring-boot-app"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "jenkins-cd"
     CLUSTER_ZONE = "us-east1-d"
