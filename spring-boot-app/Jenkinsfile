@@ -31,13 +31,13 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
+    image: gcr.io/sandbox-io-289003/springbootapp:master.57/gcloud
     imagePullPolicy: IfNotPresent
     command:
     - cat
     tty: true
   - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
+    image: gcr.io/sandbox-io-289003/springbootapp:master.57/kubectl
     imagePullPolicy: IfNotPresent
     command:
     - cat
