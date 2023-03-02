@@ -2,7 +2,7 @@ pipeline {
 
   environment {
     PROJECT = "sandbox-io-289003"
-    APP_NAME = "spring-boot-app"
+    APP_NAME = "springbootapp_01.25"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "jenkins-cd"
     CLUSTER_ZONE = "us-east1-d"
