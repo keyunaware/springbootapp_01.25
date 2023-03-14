@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keyuna-springboot-app
+  labels:
+    app: keyuna-springboot-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: keyuna-springboot-app
+  template:
+    metadata:
+      labels:
+        app: keyuna-springboot-app
+    spec:
+      containers:
+      - name: keyuna-springboot-app
+        image: gcr.io/sandbox-io-289003/keyuna-app:master.17 
+        ports:
+        - containerPort: 8080
