@@ -7,8 +7,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: products
-    department: sales
+    app: keyuna-springboot-app
+    department: 
   ports:
   - protocol: TCP
     port: 8080
