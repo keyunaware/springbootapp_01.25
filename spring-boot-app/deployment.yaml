@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: keyuna-springboot-app
-        image: gcr.io/sandbox-io-289003/keyuna-app:master.17 
+        image: gcr.io/sandbox-io-289003/keyuna-app:master.67
         ports:
         - containerPort: 8080
