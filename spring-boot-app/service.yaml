@@ -8,7 +8,6 @@ spec:
   type: LoadBalancer
   selector:
     app: keyuna-springboot-app
-    department: 
   ports:
   - protocol: TCP
     port: 8080
