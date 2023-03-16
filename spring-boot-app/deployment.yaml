@@ -21,5 +21,6 @@ spec:
           name: YOUR_NAME
           valueFrom:
            configMapKeyRef: key-config
+           key: YOUR_NAME
         ports:
         - containerPort: 8080
