@@ -17,6 +17,6 @@ public class SpringBootAppApplication {
 
 	@GetMapping()
 	public String getGreeting(){
-		return "Hello Keyuna";
+		return "Hello keyuna";
 	}
 }
