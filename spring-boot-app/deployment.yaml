@@ -23,5 +23,6 @@ spec:
               name: key-config
               key: YOUR_NAME
         image: gcr.io/sandbox-io-289003/keyuna-app:master.67
+        name: keyuna-springboot-app
         ports:
         - containerPort: 8080
