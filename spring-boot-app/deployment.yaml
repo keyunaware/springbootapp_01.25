@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: keyuna-springboot-app
+        name: keyuna-springboot-app
     spec:
       containers:
       - env:
