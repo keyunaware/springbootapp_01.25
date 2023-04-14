@@ -5,10 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: gcr.io/sandbox-io-289003/keyuna-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "master.103"
+
+app:
+  labels: "keyuna-helm"
+  name: "keyuna-helm-map"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -37,8 +41,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 8080
 
 ingress:
   enabled: false
