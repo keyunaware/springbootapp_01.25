@@ -78,10 +78,10 @@ spec:
         container('kubectl') {
           dir("spring-boot-app") {
              if ("${env.BRANCH_NAME}" == "master"){
-               sh "helm template  keyuna ./keyuna-spring-chart/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
+               sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
             }
             else{
-            sh "helm template  keyuna ./keyuna-spring-chart/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
+            sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
           //  sh "kubectl apply -f deployment.yaml"
          }
          }
