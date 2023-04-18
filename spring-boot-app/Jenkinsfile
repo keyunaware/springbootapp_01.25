@@ -53,8 +53,10 @@ spec:
 }
   }
   stages {
-        if (BRANCH_NAME == "master"){
-    stage('Release') {
+   stage('Release') {
+      when {
+                branch 'master'
+            }
       steps {
         container('git') {
         withCredentials([string(credentialsId: 'keyuna-text', variable: 'TOKEN')]) {
