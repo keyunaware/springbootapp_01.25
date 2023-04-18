@@ -88,8 +88,8 @@ spec:
     //     }
     //   }
     // }
-  }
-}
+//   }
+// }
     if (BRANCH_NAME == "master"){
     stage('Release') {
       steps {
@@ -126,5 +126,5 @@ spec:
         }
       }
     }
-
-            
+  }
+}            
