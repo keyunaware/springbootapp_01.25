@@ -92,6 +92,7 @@ spec:
       }
     }
   }
+}
     // stage('Compilation') {
     //    steps {
     //     container('maven') {
@@ -127,6 +128,4 @@ spec:
     //     }
     //   }
     // }
-  }
-}
 
