@@ -91,7 +91,6 @@ spec:
         }
       }
     }
-  }
     stage('Compilation') {
        steps {
         container('maven') {
@@ -122,10 +121,10 @@ spec:
             // else{
             sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
           //  sh "kubectl apply -f deployment.yaml"
-         }
-         }
         }
       }
     }
+    }
   }
+}
 
