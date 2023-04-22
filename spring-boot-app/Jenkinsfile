@@ -106,7 +106,7 @@ spec:
           dir("spring-boot-app") {
             // No access to docker deamon so kaniko is the best option to build docker within kubernetes jenkins agent
             // The equivilant to docker build, tag and push
-           sh "/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=${IMAGE_TAG}"
+             sh "/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=gcr.io/${PROJECT}/${APP_NAME}:${release_version}"
          }
         }
       }
@@ -115,12 +115,8 @@ spec:
       steps {
         container('kubectl') {
           dir("spring-boot-app") {
-            //  if ("${env.BRANCH_NAME}" == "master"){
-            //    sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
-            // }
-            // else{
-            sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
-          //  sh "kubectl apply -f deployment.yaml"
+            
+               sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${release_version} | kubectl apply -f - "
         }
       }
     }
