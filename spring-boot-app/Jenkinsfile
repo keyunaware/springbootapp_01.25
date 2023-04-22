@@ -95,6 +95,7 @@ spec:
        steps {
         container('maven') {
          dir("spring-boot-app") {
+          sh "mvn  versions:set -DnewVersion=${release_version}"
           sh "mvn clean install -DskipTests"
           }
         }
