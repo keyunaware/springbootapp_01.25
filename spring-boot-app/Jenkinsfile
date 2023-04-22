@@ -1,3 +1,4 @@
+def release_version
 pipeline {
   environment {
     PROJECT = "sandbox-io-289003"
@@ -60,6 +61,13 @@ spec:
       steps {
         container('git') {
         withCredentials([string(credentialsId: 'keyuna-text', variable: 'TOKEN')]) {
+          script {
+        
+        release_version  = sh (
+                script: "git log --format='%s' --max-count=1 origin/master | grep --only-matching 'v\\?[0-9]\\+\\.[0-9]\\+\\(\\.[0-9]\\+\\)\\?'",
+                 returnStdout: true
+                   ).trim()
+          }
           sh '''#!/bin/bash
             git config --global user.name "keyunaware"
             git config --global user.email "keyuna.ware@cod-it.tech"
@@ -116,12 +124,7 @@ spec:
       steps {
         container('kubectl') {
           dir("spring-boot-app") {
-            //  if ("${env.BRANCH_NAME}" == "master"){
-            //    sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
-            // }
-            // else{
-            sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${env.BRANCH_NAME}.${env.BUILD_NUMBER} | kubectl apply -f - "
-          //  sh "kubectl apply -f deployment.yaml"
+           sh "helm template  keyuna ./keyuna-helm/ --set image.tag=${release_version} | kubectl apply -f - "
         }
       }
     }
