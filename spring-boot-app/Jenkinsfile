@@ -38,7 +38,7 @@ spec:
     - cat
     tty: true
   - name: git
-    image: bitnami/git:2.40.0
+    image: jlrigau/maven-git
     imagePullPolicy: IfNotPresent
     command:
     - cat
