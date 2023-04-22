@@ -72,7 +72,7 @@ spec:
             git config --global user.name "keyunaware"
             git config --global user.email "keyuna.ware@cod-it.tech"
             git config --global user.password "$TOKEN"
-            git config --global --add safe.directory '*'
+            git config --global --add safe.directory /home/jenkins/agent/workspace/kware-springboot_master
             LAST_LOG=$(git log --format='%H' --max-count=1 origin/master)
             echo "LAST_LOG:$LAST_LOG"
             LAST_MERGE=$(git log --format='%H' --merges --max-count=1 origin/master)
