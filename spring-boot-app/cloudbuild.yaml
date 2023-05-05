@@ -1,7 +1,7 @@
 steps:
   # build the container image
 - name: "gcr.io/cloud-builders/docker"
-  dir:  "keyunaware/springbootapp_01.25/spring-boot-app"
+  dir:  "/spring-boot-app"
   args: ["build", "-t", "gcr.io/sandbox-io-289003/image:tag", "."]
 #   # push container image
 # - name: "gcr.io/cloud-builders/docker"
