@@ -1,9 +1,13 @@
 steps:
-  # build the container image
-- name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/sandbox-io-289003/image:tag", "."]
-  dir:  "/spring-boot-app"
-  # args: ["build", "-t", "gcr.io/sandbox-io-289003/image:tag", "."]
+  - name: maven
+    entrypoint: mvn
+    args: ["test"]
+  - name: maven
+    entrypoint: mvn
+    args: ["package", "clean install -DskipTests"]
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp", "--build-arg=JAR_FILE=target/spring-boot-app-1.0.0.jar", "."]
+images: ["us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
 #   # push container image
 # - name: "gcr.io/cloud-builders/docker"
 #   args: ["push", "gcr.io/sandbox-io-289003/image:tag"]
