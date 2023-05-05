@@ -1,10 +1,10 @@
 steps:
-  - name: maven:3-eclipse-temurin-17-alpine
+  - name: maven
     entrypoint: mvn
     args: ["test"]
-  - name: maven:3-eclipse-temurin-17-alpine
+  - name: maven
     entrypoint: mvn
-    args: ["package", "clean install -DskipTests"]
+    args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/docker
     args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp", "--build-arg=JAR_FILE=target/spring-boot-app-1.0.0.jar", "."]
 images: ["us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
