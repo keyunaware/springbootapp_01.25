@@ -1,5 +1,5 @@
 steps:
-  - name: maven:3.9.1-eclipse-temurin-17-focal
+  - name: maven
     entrypoint: mvn
     args: ["test"]
 #   - name: maven:3.9.1-eclipse-temurin-17-focal
