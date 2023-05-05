@@ -1,8 +1,8 @@
 steps:
-  - name: maven
+  - name: maven:3.9.1-ibmjava
     entrypoint: mvn
     args: ["test"]
-  - name: maven
+  - name: maven:3.9.1-ibmjava
     entrypoint: mvn
     args: ['clean', 'install', '-DskipTests']
   - name: gcr.io/cloud-builders/docker
