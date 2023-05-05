@@ -1,8 +1,8 @@
 steps:
-  - name: maven:3.9.1-ibmjava
+  - name: maven:3.9.1-eclipse-temurin-17-focal
     entrypoint: mvn
     args: ["test"]
-  - name: maven:3.9.1-ibmjava
+  - name: maven:3.9.1-eclipse-temurin-17-focal
     entrypoint: mvn
     args: ['clean', 'install', '-DskipTests']
   - name: gcr.io/cloud-builders/docker
