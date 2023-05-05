@@ -1,8 +1,8 @@
 steps:
-  - name: maven
+  - name: maven:3-eclipse-temurin-17-alpine
     entrypoint: mvn
     args: ["test"]
-  - name: maven
+  - name: maven:3-eclipse-temurin-17-alpine
     entrypoint: mvn
     args: ["package", "clean install -DskipTests"]
   - name: gcr.io/cloud-builders/docker
