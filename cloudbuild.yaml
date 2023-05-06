@@ -3,8 +3,8 @@ steps:
     entrypoint: mvn
     args: ['clean', 'install', '-DskipTests']
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/keyuna-app/gcr.io/sandbox-io-289003/keyuna-app@sha256:fdbf35425376b655579b5c83ac428e1b1c98b52669ab028ec6e6bc1596777ad0" ]
-images: ["us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
+    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/keyuna-app", "--build-arg=JAR_FILE=target/keyuna-app-1.0.0.jar", "." ]
+images: ["us-east1-docker.pkg.dev/sandbox-io-289003/keyuna-app"]
 #   # push container image
 # - name: "gcr.io/cloud-builders/docker"
 #   args: ["push", "gcr.io/sandbox-io-289003/image:tag"]
