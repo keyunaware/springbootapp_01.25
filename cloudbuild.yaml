@@ -3,7 +3,7 @@ steps:
     entrypoint: mvn
     args: ['clean', 'install', '-DskipTests']
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
+    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/gcr.io/sandbox-io-289003/keyuna-app"]
 images: ["us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
 #   # push container image
 # - name: "gcr.io/cloud-builders/docker"
