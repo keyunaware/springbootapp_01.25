@@ -1,13 +1,10 @@
 steps:
   - name: maven
     entrypoint: mvn
-    args: ["test"]
-#   - name: maven:3.9.1-eclipse-temurin-17-focal
-#     entrypoint: mvn
-#     args: ['clean', 'install', '-DskipTests']
-#   - name: gcr.io/cloud-builders/docker
-#     args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp", "--build-arg=JAR_FILE=target/spring-boot-app-1.0.0.jar", "."]
-# images: ["us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
+    args: ['clean', 'install', '-DskipTests']
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp", "--build-arg=JAR_FILE=target/spring-boot-app-1.0.0.jar", "."]
+images: ["us-east1-docker.pkg.dev/sandbox-io-289003/springbootapp_01.25/springbootapp"]
 #   # push container image
 # - name: "gcr.io/cloud-builders/docker"
 #   args: ["push", "gcr.io/sandbox-io-289003/image:tag"]
