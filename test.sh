@@ -1,0 +1,1 @@
+helm template  keyuna ./keyuna-helm/ --set image.tag=apple > k8.yaml
