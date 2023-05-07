@@ -3,16 +3,22 @@ steps:
     entrypoint: mvn
     args: ['clean', 'install', '-DskipTests']
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "us-east1-docker.pkg.dev/sandbox-io-289003/keyuna-app", "." ]
-images: ["us-east1-docker.pkg.dev/sandbox-io-289003/keyuna-app"]
-#   # push container image
-# - name: "gcr.io/cloud-builders/docker"
-#   args: ["push", "gcr.io/sandbox-io-289003/image:tag"]
-#   # deploy container image to GKE
-# - name: "gcr.io/cloud-builders/gke-deploy"
-#   args:
-#   - run
-#   - --filename=kubernetes-resource-file
-#   - --image=gcr.io/project-id/image:tag
-#   - --location=location
-#   - --cluster=cluster
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA", "." ]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA"]
+  - name: 'gcr.io/$PROJECT_ID/helm'
+    entrypoint: 'bash'
+    args: ['./test.sh']
+    env:
+    - 'CLOUDSDK_COMPUTE_ZONE=us-east1-d'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=jenkins-cd'
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+    - run
+    - --filename=k8.yaml
+    - --image=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
+    - --location=us-east1-d
+    - --cluster=jenkins-cd
+tags: ['cloud-builders-community']
+substitutions:
+    _REPO_NAME: keyuna-app 
