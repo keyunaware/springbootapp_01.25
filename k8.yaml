@@ -1,0 +1,102 @@
+---
+# Source: keyuna-helm/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keyuna-helm-map
+data:
+  YOUR_NAME: keyuna-helm-map
+---
+# Source: keyuna-helm/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+      cloud.google.com/backend-config: '{"default": "keyuna-hc-config"}'
+  name: keyuna-helm
+  labels:
+    app: keyuna-helm
+spec:
+  type: LoadBalancer
+  selector:
+    app: keyuna-helm
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+---
+# Source: keyuna-helm/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keyuna-helm
+  labels:
+    app: keyuna-helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keyuna-helm
+  template:
+    metadata:
+      labels:
+        app: keyuna-helm
+    spec:
+      containers:
+      - name: keyuna-helm
+        image: gcr.io/sandbox-io-289003/keyuna-app:apple
+        ports:
+        - containerPort: 8080
+          name: http
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /keyuna/api/hello
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        env:
+        - name: YOUR_NAME
+          valueFrom:
+            configMapKeyRef: 
+              name: keyuna-helm-map
+              key: YOUR_NAME
+---
+# Source: keyuna-helm/templates/backendconfig.yaml
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: keyuna-hc-config
+spec:
+  logging:
+    enable: true
+    sampleRate: 0.5
+  healthCheck:
+    checkIntervalSec: 15
+    port: 8080
+    type: HTTP
+    requestPath: /keyuna/api/hello
+---
+# Source: keyuna-helm/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "keyuna-keyuna-helm-test-connection"
+  labels:
+    helm.sh/chart: keyuna-helm-0.1.0
+    app.kubernetes.io/name: keyuna-helm
+    app.kubernetes.io/instance: keyuna
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['keyuna-keyuna-helm:8080']
+  restartPolicy: Never
